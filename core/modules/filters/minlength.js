@@ -19,7 +19,7 @@ exports.minlength = function(source,operator,options) {
 	var results = [],
 		minLength = parseInt(operator.operand || "",10) || 0;
 	source(function(tiddler,title) {
-		if(title.length >= minLength) {
+		if(title && title.length && title.length >= minLength) {
 			results.push(title);
 		}
 	});
