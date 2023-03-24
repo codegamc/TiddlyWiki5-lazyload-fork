@@ -29,7 +29,7 @@ Syncer.prototype.throttleInterval = 1 * 1000; // Defer saving tiddlers if they'v
 Syncer.prototype.errorRetryInterval = 5 * 1000; // Interval to retry after an error
 Syncer.prototype.fallbackInterval = 10 * 1000; // Unless the task is older than 10s
 Syncer.prototype.pollTimerInterval = 60 * 1000; // Interval for polling for changes from the adaptor
-Syncer.prototype.alwaysFetchAllSkinnyTiddlers = true; // Should all skinny tiddler be immediately loaded?
+Syncer.prototype.alwaysFetchAllSkinnyTiddlers = false; // Should all skinny tiddler be immediately loaded?
 
 /*
 Instantiate the syncer with the following options:
@@ -51,7 +51,7 @@ function Syncer(options) {
 	this.errorRetryInterval = options.errorRetryInterval || this.errorRetryInterval;
 	this.fallbackInterval = options.fallbackInterval || this.fallbackInterval;
 	this.pollTimerInterval = options.pollTimerInterval || parseInt(this.wiki.getTiddlerText(this.titleSyncPollingInterval,""),10) || this.pollTimerInterval;
-	this.alwaysFetchAllSkinnyTiddlers = options.alwaysFetchAllSkinnyTiddlers || this.alwaysFetchAllSkinnyTiddlers;
+	this.alwaysFetchAllSkinnyTiddlers = false;
 	this.logging = "logging" in options ? options.logging : true;
 	// Make a logger
 	this.logger = new $tw.utils.Logger("syncer" + ($tw.browser ? "-browser" : "") + ($tw.node ? "-server" : "")  + (this.syncadaptor.name ? ("-" + this.syncadaptor.name) : ""),{
